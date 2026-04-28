@@ -17,5 +17,8 @@ public class MainPanel extends JPanel {
 
         JButton tlacitkoHry = new JButton("Nová Hra");
         add(tlacitkoHry);
+
+        JButton tlacitkoNastaveni = new JButton("Nastavení");
+        add(tlacitkoNastaveni);
     }
 }
