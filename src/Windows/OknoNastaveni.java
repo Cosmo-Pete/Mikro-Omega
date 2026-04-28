@@ -22,6 +22,18 @@ public class OknoNastaveni extends JFrame {
         JCheckBox zvuky = new JCheckBox("Zvuky");
         panel.add(zvuky);
 
+        panel.add(new JLabel("Rozlišení:"));
+
+        String[] rozliseni = {
+                "1280x720",
+                "1366x768",
+                "1600x900",
+                "1920x1080",
+                "2560x1440",
+                "3840x2160"
+        };
+        JComboBox<String> boxRozliseni = new JComboBox<>(rozliseni);
+        panel.add(boxRozliseni);
         add(panel);
     }
 }
