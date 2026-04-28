@@ -19,6 +19,9 @@ public class MainPanel extends JPanel {
         add(tlacitkoHry);
 
         JButton tlacitkoNastaveni = new JButton("Nastavení");
+        tlacitkoNastaveni.addActionListener(e -> {
+            new OknoNastaveni().setVisible(true);
+        });
         add(tlacitkoNastaveni);
     }
 }
