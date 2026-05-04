@@ -3,9 +3,9 @@ package Windows;
 import javax.swing.*;
 import java.awt.*;
 
-public class OknoNastaveni extends JFrame {
+public class SettingsFrame extends JFrame {
 
-    public OknoNastaveni() {
+    public SettingsFrame() {
         setTitle("Nastavení");
         setSize(400, 300);
         setLocationRelativeTo(null); // vycentruje okno
