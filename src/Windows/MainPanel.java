@@ -43,7 +43,7 @@ public class MainPanel extends JPanel {
         tlacitkoukonceni.addActionListener(e -> System.exit(0));
 
         tlacitkoNastaveni.addActionListener(e -> {
-            new OknoNastaveni().setVisible(true);
+            new SettingsFrame().setVisible(true);
         });
     }
 }
