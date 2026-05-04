@@ -3,27 +3,33 @@ package Windows;
 import javax.swing.*;
 
 public class MainFrame extends JFrame {
-private MainPanel gamePanel;
 
-public MainFrame(){
-    Window();
-    Game();
+    // Main panel of the application
+    private MainPanel mainPanel;
+
+    public MainFrame() {
+        setupWindow();
+        setupGame();
     }
-    private void Window(){
-    setTitle("Hlavní menu");
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    setSize(1280,720);
-
-    setResizable(true);
-
-    setLocationRelativeTo(null);
+    /**
+     * Configures the main window properties.
+     */
+    private void setupWindow() {
+        setTitle("Main Menu");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1280, 720);
+        setResizable(true);
+        setLocationRelativeTo(null);
     }
-    private void Game(){
-    gamePanel = new MainPanel();
-    add(gamePanel);
 
-    pack();
-    setVisible(true);
+    /**
+     * Initializes and displays the main panel.
+     */
+    private void setupGame() {
+        mainPanel = new MainPanel(this);
+        add(mainPanel);
+        pack();
+        setVisible(true);
     }
 }
