@@ -42,6 +42,7 @@ public class SettingsFrame extends JFrame {
         setTitle("Settings");
         setSize(400, 300);
         setLocationRelativeTo(null);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JPanel panel = new JPanel(new FlowLayout());

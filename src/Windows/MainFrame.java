@@ -19,7 +19,7 @@ public class MainFrame extends JFrame {
         setTitle("Main Menu");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280, 720);
-        setResizable(true);
+        setResizable(false);
         setLocationRelativeTo(null);
     }
 
