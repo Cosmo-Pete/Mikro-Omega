@@ -5,13 +5,36 @@ import java.awt.*;
 
 public class SettingsFrame extends JFrame {
 
-    // Reference to the main window
     private MainFrame mainFrame;
 
     private JCheckBox musicCheckBox;
     private JCheckBox soundCheckBox;
-    private JComboBox<String> resolutionBox;
+    private JComboBox<Resolution> resolutionBox;
     private JButton saveButton;
+
+
+    private enum Resolution {
+        HD(1280, 720, "HD"),
+        HD_PLUS(1366, 768, "HD+"),
+        FULL_HD(1920, 1080, "Full HD"),
+        QHD(2560, 1440, "QHD"),
+        UHD_4K(3840, 2160, "4K");
+
+        final int width;
+        final int height;
+        final String label;
+
+        Resolution(int width, int height, String label) {
+            this.width = width;
+            this.height = height;
+            this.label = label;
+        }
+
+        @Override
+        public String toString() {
+            return label + " (" + width + "x" + height + ")";
+        }
+    }
 
     public SettingsFrame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -21,8 +44,7 @@ public class SettingsFrame extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
+        JPanel panel = new JPanel(new FlowLayout());
 
         panel.add(new JLabel("Game Settings"));
 
@@ -34,53 +56,34 @@ public class SettingsFrame extends JFrame {
 
         panel.add(new JLabel("Resolution:"));
 
-        String[] resolutions = {
-                "1280x720",
-                "1366x768",
-                "1600x900",
-                "1920x1080",
-                "2560x1440",
-                "3840x2160"
-        };
-
-        resolutionBox = new JComboBox<>(resolutions);
+        resolutionBox = new JComboBox<>(Resolution.values());
         panel.add(resolutionBox);
 
         saveButton = new JButton("Save");
         panel.add(saveButton);
 
-        // Listener on save button
         saveButton.addActionListener(e -> applyResolution());
 
         add(panel);
     }
 
-    /**
-     * Applies the selected resolution to the main window.
-     * Parses the resolution string and resizes the MainFrame accordingly.
-     */
     private void applyResolution() {
-        try {
-            // Get selected resolution e.g. "1280x720"
-            String selected = (String) resolutionBox.getSelectedItem();
+        Resolution res = (Resolution) resolutionBox.getSelectedItem();
 
-            // Split the string into two numbers
-            String[] parts = selected.split("x");
-            int width = Integer.parseInt(parts[0]);
-            int height = Integer.parseInt(parts[1]);
+        if (res == null) return;
 
-            // Apply to MainFrame
-            mainFrame.setSize(width, height);
-            mainFrame.setLocationRelativeTo(null);
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 
-            JOptionPane.showMessageDialog(this, "Resolution changed to " + selected);
-
-        } catch (NumberFormatException e) {
-            // If parsing fails
-            JOptionPane.showMessageDialog(this, "Error changing resolution!",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-
-            //Todo přidat kontrolu aby uživatel nemohl zvětšit okno na větší rozlišení než má obrazovku
+        if (res.width > screen.width || res.height > screen.height) {
+            JOptionPane.showMessageDialog(this,
+                    "Rozlišení je větší než tvoje obrazovka!");
+            return;
         }
+
+        mainFrame.setSize(res.width, res.height);
+        mainFrame.setLocationRelativeTo(null);
+
+        JOptionPane.showMessageDialog(this,
+                "Resolution changed to " + res.label + " (" + res.width + "x" + res.height + ")");
     }
 }
