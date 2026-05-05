@@ -8,3 +8,4 @@ src/
 ├── Logic/       – QuizManager, Timer, ScoreBoard, QuestionBank
 └── Interface/   – Answerable, Saveable
 
+Vyzkoušeno nastavování vlastního rozlišení : vyhodnoceno jako nepotřebné
