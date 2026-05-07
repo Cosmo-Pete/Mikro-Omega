@@ -18,7 +18,6 @@ public class MainMenuPanel extends JPanel {
     }
 
     private void initComponents() {
-        // TODO: Implementace
     }
 
     private void setupLayout() {

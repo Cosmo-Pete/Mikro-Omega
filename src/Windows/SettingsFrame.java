@@ -11,7 +11,7 @@ public class SettingsFrame extends JFrame {
     private JCheckBox soundCheckBox;
     private JComboBox<Resolution> resolutionBox;
     private JButton saveButton;
-
+    private JButton playerNameButton;
 
     private enum Resolution {
         HD(1280, 720, "HD"),
@@ -41,29 +41,58 @@ public class SettingsFrame extends JFrame {
 
         setTitle("Settings");
         setSize(400, 300);
-        setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel(new FlowLayout());
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        panel.add(new JLabel("Game Settings"));
+        // Title
+        JLabel titleLabel = new JLabel("Game Settings");
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        panel.add(Box.createVerticalStrut(15));
+        panel.add(titleLabel);
+
+        // Music + Sound
+        JPanel musicSoundPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         musicCheckBox = new JCheckBox("Music");
-        panel.add(musicCheckBox);
-
         soundCheckBox = new JCheckBox("Sounds");
-        panel.add(soundCheckBox);
 
-        panel.add(new JLabel("Resolution:"));
+        musicSoundPanel.add(musicCheckBox);
+        musicSoundPanel.add(soundCheckBox);
+
+        musicSoundPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        panel.add(Box.createVerticalStrut(5));
+        panel.add(musicSoundPanel);
+
+        // Resolution
+        JPanel resolutionPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+        resolutionPanel.add(new JLabel("Resolution:"));
 
         resolutionBox = new JComboBox<>(Resolution.values());
-        panel.add(resolutionBox);
+        resolutionPanel.add(resolutionBox);
 
         saveButton = new JButton("Save");
-        panel.add(saveButton);
+        resolutionPanel.add(saveButton);
 
         saveButton.addActionListener(e -> applyResolution());
+
+        resolutionPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        panel.add(Box.createVerticalStrut(5));
+        panel.add(resolutionPanel);
+
+        // PlayerNameButton
+        playerNameButton = new JButton("name set");
+        playerNameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        panel.add(Box.createVerticalStrut(5));
+        panel.add(playerNameButton);
 
         add(panel);
     }
@@ -76,15 +105,25 @@ public class SettingsFrame extends JFrame {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 
         if (res.width > screen.width || res.height > screen.height) {
-            JOptionPane.showMessageDialog(this,
-                    "Rozlišení je větší než tvoje obrazovka!");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Rozlišení je větší než tvoje obrazovka!"
+            );
             return;
         }
 
         mainFrame.setSize(res.width, res.height);
         mainFrame.setLocationRelativeTo(null);
 
-        JOptionPane.showMessageDialog(this,
-                "Resolution changed to " + res.label + " (" + res.width + "x" + res.height + ")");
+        JOptionPane.showMessageDialog(
+                this,
+                "Resolution changed to "
+                        + res.label
+                        + " ("
+                        + res.width
+                        + "x"
+                        + res.height
+                        + ")"
+        );
     }
 }
