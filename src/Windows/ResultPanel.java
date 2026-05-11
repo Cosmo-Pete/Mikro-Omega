@@ -126,7 +126,7 @@ public class ResultPanel extends JPanel {
     }
 
     /**
-     * Returns a motivational message based on accuracy percentage.
+     * Returns a message based on accuracy percentage.
      * @param accuracy percentage of correct answers
      * @return message string
      */
