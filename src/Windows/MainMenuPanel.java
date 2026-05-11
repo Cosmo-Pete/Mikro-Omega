@@ -4,6 +4,8 @@ import javax.swing.*;
 
 public class MainMenuPanel extends JPanel {
 
+    private MainFrame mainFrame;
+
     private JTextField playerNameField;
     private JComboBox<String> categoryBox;
     private JComboBox<String> difficultyBox;
@@ -11,11 +13,15 @@ public class MainMenuPanel extends JPanel {
     private JButton scoreBoardButton;
     private JButton settingsButton;
 
-    public MainMenuPanel() {
+
+
+    public MainMenuPanel(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
         initComponents();
         setupLayout();
         setupListeners();
     }
+
 
     private void initComponents() {
     }
