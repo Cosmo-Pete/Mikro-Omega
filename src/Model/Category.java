@@ -4,7 +4,7 @@ public class Category {
 
     private String name;
     private String description;
-    private String iconPath;    // cesta k ikoně kategorie
+    private String iconPath;   //path to icon
 
     public Category(String name, String description, String iconPath) {
         this.name = name;
