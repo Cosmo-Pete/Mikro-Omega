@@ -6,11 +6,12 @@ import Model.QuizResult;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ScoreBoard implements Saveable {
 
     private List<QuizResult> results;
-    private int maxEntries;             // max počet záznamů (např. top 10)
+    private int maxEntries;             // max entries for example 10;
 
     public ScoreBoard(int maxEntries) {
         this.results = new ArrayList<>();
@@ -19,28 +20,38 @@ public class ScoreBoard implements Saveable {
 
     // Správa výsledků
     public void addResult(QuizResult result) {
-        // TODO: Implementace
+        results.add(result);
+        sortResults();
+        if (results.size()>maxEntries){
+            results.removeLast();
+        }
     }
 
     public void clearAll() {
-        // TODO: Implementace
+        results.clear();
     }
 
-    // Získání výsledků
-    public List<QuizResult> getTopResults() {
-        return new ArrayList<>();
+    public List<QuizResult> getTopResults(int count) { //returns n best results
+        int to = Math.min(count, results.size());
+        return new ArrayList<>(results.subList(0, to));
     }
 
-    public List<QuizResult> getTopResults(int count) {
-        return new ArrayList<>();
-    }
-
+    /**
+     *
+     * @param playerName
+     * @return results from the player by name
+     */
     public List<QuizResult> getResultsByPlayer(String playerName) {
-        return new ArrayList<>();
+        return results.stream()
+                .filter(r -> r.getPlayer().equals(playerName)) //gets player from the result and compares gim to the player were searching for
+                .collect(Collectors.toList()); //saves them to a new list
     }
 
     public QuizResult getBestResult() {
-        return null;
+        if (results.isEmpty()){
+            return null;
+        }
+        return results.getFirst();
     }
 
     // Saveable
@@ -54,12 +65,13 @@ public class ScoreBoard implements Saveable {
         // TODO: Implementace
     }
 
-    // Pomocné
+
     public int getTotalEntries() {
         return 0;
     }
 
     private void sortResults() {
-        // TODO: Implementace
+        results.sort(Comparator.comparingInt(QuizResult::getScore).reversed()); // sorting results from best to worst
+
     }
 }
