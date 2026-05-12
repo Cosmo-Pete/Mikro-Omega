@@ -6,6 +6,7 @@ import Model.Question;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuestionBank implements Saveable {
 
@@ -15,26 +16,55 @@ public class QuestionBank implements Saveable {
         this.allQuestions = new ArrayList<>();
     }
 
-    // Přidávání otázek
+    /**
+     * adding question to the List
+     * @param question
+     */
     public void addQuestion(Question question) {
-        // TODO: Implementace
+        allQuestions.add(question);
     }
 
+    /**
+     * removing question from the List
+     * @param question
+     */
     public void removeQuestion(Question question) {
-        // TODO: Implementace
+        allQuestions.remove(question);
     }
 
-    // Filtrování
-    public List<Question> getByCategory(Category category) {
-        return new ArrayList<>();
+    /**
+     *
+      * @param categoryName name of the category
+     * @return returns any matching category names from the List
+     */
+    public List<Question> getByCategory(String categoryName) {
+        return allQuestions.stream()
+                .filter(c -> c.getCategory().getName().equals(categoryName))
+                .toList();
     }
 
+    /**
+     *
+     * @param difficulty difficulty of the question
+     * @return returns any matching difficulty with the one were searching for
+     */
     public List<Question> getByDifficulty(String difficulty) {
-        return new ArrayList<>();
+        return allQuestions.stream()
+                .filter(d -> d.getDifficulty().equals(difficulty))
+                .toList();
     }
 
-    public List<Question> getByCategoryAndDifficulty(Category category, String difficulty) {
-        return new ArrayList<>();
+    /**
+     *
+     * @param categoryName name of the category
+     * @param difficulty difficulty of the question
+     * @return combination of getByDifficulty and getByCategory
+     */
+    public List<Question> getByCategoryAndDifficulty(String categoryName, String difficulty) {
+        return allQuestions.stream()
+                .filter(c -> c.getCategory().getName().equals(categoryName))
+                .filter(d -> d.getDifficulty().equals(difficulty))
+                .toList();
     }
 
     public List<Question> getRandomQuestions(int count) {
@@ -52,12 +82,12 @@ public class QuestionBank implements Saveable {
         // TODO: Implementace
     }
 
-    // Pomocné
+
     public int getTotalCount() {
-        return 0;
+        return allQuestions.size();
     }
 
     public boolean isEmpty() {
-        return true;
+        return allQuestions.isEmpty();
     }
 }
