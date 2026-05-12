@@ -18,7 +18,10 @@ public class ScoreBoard implements Saveable {
         this.maxEntries = maxEntries;
     }
 
-    // Správa výsledků
+    /**
+     * managment of results
+     * @param result
+     */
     public void addResult(QuizResult result) {
         results.add(result);
         sortResults();
@@ -27,10 +30,18 @@ public class ScoreBoard implements Saveable {
         }
     }
 
+    /**
+     * deletes results from the list
+     */
     public void clearAll() {
         results.clear();
     }
 
+    /**
+     *
+     * @param count how many of the top results will be shown
+     * @return ArrayList of n of the best result
+     */
     public List<QuizResult> getTopResults(int count) { //returns n best results
         int to = Math.min(count, results.size());
         return new ArrayList<>(results.subList(0, to));
@@ -39,12 +50,12 @@ public class ScoreBoard implements Saveable {
     /**
      *
      * @param playerName
-     * @return results from the player by name
+     * @return returns results from the player by name
      */
     public List<QuizResult> getResultsByPlayer(String playerName) {
         return results.stream()
                 .filter(r -> r.getPlayer().equals(playerName)) //gets player from the result and compares gim to the player were searching for
-                .collect(Collectors.toList()); //saves them to a new list
+                .toList(); //saves them to a new list
     }
 
     public QuizResult getBestResult() {
@@ -67,7 +78,7 @@ public class ScoreBoard implements Saveable {
 
 
     public int getTotalEntries() {
-        return 0;
+        return results.size();
     }
 
     private void sortResults() {
