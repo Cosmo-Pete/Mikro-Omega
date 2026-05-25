@@ -104,8 +104,7 @@ public class ResultPanel extends JPanel {
 
         // Open scoreboard window using Singleton
         scoreBoardButton.addActionListener(e -> {
-            MainFrame frame = (MainFrame) SwingUtilities.getWindowAncestor(this);
-            new ScoreBoardWindow(frame.getScoreBoard()).setVisible(true);
+            new ScoreBoardWindow(ScoreBoard.getInstance()).setVisible(true);
         });
 
         // Play again – switch back to main menu to reselect options
