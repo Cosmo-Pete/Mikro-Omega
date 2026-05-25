@@ -42,7 +42,7 @@ public class GamePanel extends JPanel {
 
     private void showResults() {
         MainFrame frame = (MainFrame) SwingUtilities.getWindowAncestor(this);
-        frame.switchPanel(new ResultPanel(quizManager.finishQuiz(), scoreBoard));
+        frame.switchPanel(new ResultPanel(quizManager.finishQuiz()));
     }
 
     /**
@@ -284,13 +284,5 @@ public class GamePanel extends JPanel {
         });
         delay.setRepeats(false);
         delay.start();
-    }
-
-    /**
-     * Switches the main panel to the result screen.
-     */
-    private void showResults() {
-        MainFrame frame = (MainFrame) SwingUtilities.getWindowAncestor(this);
-        frame.switchPanel(new ResultPanel(quizManager.finishQuiz()));
     }
 }
