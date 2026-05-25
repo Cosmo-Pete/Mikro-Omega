@@ -17,6 +17,7 @@ public class ScoreBoardWindow extends JFrame {
     private JButton closeButton;
     private JButton clearButton;
     private JComboBox<String> filterBox;
+    private int c = 5;
 
     /**
      * Creates the scoreboard window displaying all quiz results.
@@ -124,7 +125,7 @@ public class ScoreBoardWindow extends JFrame {
      * Loads all results from the scoreboard and fills the table.
      */
     private void loadResults() {
-        refreshTable(scoreBoard.getTopResults());
+        refreshTable(scoreBoard.getTopResults(c));
     }
 
     /**
@@ -152,7 +153,7 @@ public class ScoreBoardWindow extends JFrame {
      * @param category category name to filter by
      */
     public void applyFilter(String category) {
-        List<QuizResult> filtered = scoreBoard.getTopResults().stream()
+        List<QuizResult> filtered = scoreBoard.getTopResults(c).stream()
                 .filter(r -> r.getCategory().getName().equals(category))
                 .toList();
         refreshTable(filtered);

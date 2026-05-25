@@ -22,19 +22,36 @@ public class QuizManager {
 
     // Průběh kvízu
     public void startQuiz() {
-        // TODO: Implementace
+        currentIndex = 0;
+        score = 0;
+        timer.start();
+        timer.reset();
     }
 
     public void nextQuestion() {
-        // TODO: Implementace
+        currentIndex++;
+        timer.reset();
+        if (!isQuizFinished()) {
+            timer.start();
+
+        }
     }
 
     public void skipQuestion() {
-        // TODO: Implementace
+        currentIndex++;
+        timer.reset();
+        if (!isQuizFinished()){
+            timer.start();
+        }
     }
 
     public boolean submitAnswer(Object answer) {
-        return false;
+        boolean correct = questions.get(currentIndex).checkAnswer(answer);
+        if (correct){
+            score += calculatePoints(true, timer.getRemainingSeconds());
+        }
+        correctAnswers++;
+        return correct;
     }
 
     public boolean isQuizFinished() {
