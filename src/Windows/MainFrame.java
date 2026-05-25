@@ -1,13 +1,12 @@
 package Windows;
 
-import Logic.ScoreBoard;
 import javax.swing.*;
+import java.awt.*;
 
 public class MainFrame extends JFrame {
 
     // Main panel of the application
-    private MainMenuPanel mainPanel;
-    private ScoreBoard scoreBoard;
+    private MainPanel mainPanel;
 
     public MainFrame() {
         setupWindow();
@@ -29,8 +28,7 @@ public class MainFrame extends JFrame {
      * Initializes and displays the main panel.
      */
     private void setupGame() {
-        scoreBoard = new ScoreBoard(10);
-        mainPanel = new MainMenuPanel(this,scoreBoard);
+        mainPanel = new MainPanel(this);
         add(mainPanel);
         pack();
         setVisible(true);
@@ -38,6 +36,7 @@ public class MainFrame extends JFrame {
 
     /**
      * Switches the content of the window to a new panel.
+     * Removes the current panel and displays the new one.
      * @param panel the new panel to display
      */
     public void switchPanel(JPanel panel) {
@@ -51,15 +50,7 @@ public class MainFrame extends JFrame {
      * Returns the main menu panel.
      * @return mainPanel
      */
-    public MainMenuPanel getMainPanel() {
+    public MainPanel getMainPanel() {
         return mainPanel;
-    }
-
-    /**
-     * Returns the scoreboard.
-     * @return scoreBoard
-     */
-    public ScoreBoard getScoreBoard() {
-        return scoreBoard;
     }
 }
