@@ -4,29 +4,30 @@ import Interface.Saveable;
 import Model.QuizResult;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class ScoreBoard implements Saveable {
 
     private List<QuizResult> results;
-    private int maxEntries;             // max počet záznamů (např. top 10)
+    private int maxEntries;
 
+    /**
+     * Creates a new ScoreBoard with a maximum number of entries.
+     * @param maxEntries maximum number of results to store
+     */
     public ScoreBoard(int maxEntries) {
         this.results = new ArrayList<>();
         this.maxEntries = maxEntries;
     }
 
-    // Správa výsledků
     public void addResult(QuizResult result) {
-        // TODO: Implementace
+        // TODO
     }
 
     public void clearAll() {
-        // TODO: Implementace
+        // TODO
     }
 
-    // Získání výsledků
     public List<QuizResult> getTopResults() {
         return new ArrayList<>();
     }
@@ -43,23 +44,32 @@ public class ScoreBoard implements Saveable {
         return null;
     }
 
-    // Saveable
+    /**
+     * Returns a list of all unique category names from results.
+     * @return list of category names
+     */
+    public List<String> getAvailableCategories() {
+        return results.stream()
+                .map(r -> r.getCategory().getName())
+                .distinct()
+                .toList();
+    }
+
+    public int getTotalEntries() {
+        return results.size();
+    }
+
+    private void sortResults() {
+        // TODO
+    }
+
     @Override
     public void save(String filePath) {
-        // TODO: Implementace
+        // TODO
     }
 
     @Override
     public void load(String filePath) {
-        // TODO: Implementace
-    }
-
-    // Pomocné
-    public int getTotalEntries() {
-        return 0;
-    }
-
-    private void sortResults() {
-        // TODO: Implementace
+        // TODO
     }
 }
