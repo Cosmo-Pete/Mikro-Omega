@@ -43,6 +43,17 @@ public class ScoreBoard implements Saveable {
         return null;
     }
 
+    /**
+     * Returns a list of all unique category names from results.
+     * @return list of category names
+     */
+    public List<String> getAvailableCategories() {
+        return results.stream()
+                .map(r -> r.getCategory().getName())
+                .distinct()
+                .toList();
+    }
+
     // Saveable
     @Override
     public void save(String filePath) {
