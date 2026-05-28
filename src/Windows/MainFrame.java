@@ -5,7 +5,6 @@ import javax.swing.*;
 
 public class MainFrame extends JFrame {
 
-    // Main panel of the application
     private MainMenuPanel mainPanel;
     private ScoreBoard scoreBoard;
 
@@ -26,11 +25,11 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Initializes and displays the main panel.
+     * Initializes and displays the main menu panel.
      */
     private void setupGame() {
         scoreBoard = new ScoreBoard(10);
-        mainPanel = new MainMenuPanel(this,scoreBoard);
+        mainPanel = new MainMenuPanel(this, scoreBoard);
         add(mainPanel);
         pack();
         setVisible(true);
