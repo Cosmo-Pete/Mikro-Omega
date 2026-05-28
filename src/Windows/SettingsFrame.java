@@ -96,6 +96,21 @@ public class SettingsFrame extends JFrame {
         panel.add(Box.createVerticalStrut(5));
         panel.add(playerNameButton);
 
+        playerNameButton.addActionListener(e -> {
+            String name = JOptionPane.showInputDialog(
+                    this,
+                    "Enter your name:",
+                    "Player Name",
+                    JOptionPane.PLAIN_MESSAGE
+            );
+            if (name != null && !name.trim().isEmpty()) {
+                mainMenuPanel.setPlayerName(name);
+                JOptionPane.showMessageDialog(this, "Name set to: " + name);
+            }
+        });
+
+        add(panel);
+
         add(panel);
     }
 
