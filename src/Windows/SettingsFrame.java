@@ -6,6 +6,7 @@ import java.awt.*;
 public class SettingsFrame extends JFrame {
 
     private MainFrame mainFrame;
+    private MainMenuPanel mainMenuPanel;
 
     private JCheckBox musicCheckBox;
     private JCheckBox soundCheckBox;
@@ -36,8 +37,9 @@ public class SettingsFrame extends JFrame {
         }
     }
 
-    public SettingsFrame(MainFrame mainFrame) {
+    public SettingsFrame(MainFrame mainFrame, MainMenuPanel mainMenuPanel) {
         this.mainFrame = mainFrame;
+        this.mainMenuPanel = mainMenuPanel;
 
         setTitle("Settings");
         setSize(400, 300);
@@ -125,5 +127,18 @@ public class SettingsFrame extends JFrame {
                         + res.height
                         + ")"
         );
+
+        playerNameButton.addActionListener(e -> {
+            String name = JOptionPane.showInputDialog(
+                    this,
+                    "Enter your name:",
+                    "Player Name",
+                    JOptionPane.PLAIN_MESSAGE
+            );
+            if (name != null && !name.trim().isEmpty()) {
+                mainMenuPanel.setPlayerName(name);
+                JOptionPane.showMessageDialog(this, "Name set to: " + name);
+            }
+        });
     }
 }
