@@ -26,7 +26,7 @@ public class MainMenuPanel extends JPanel {
     private JButton settingsButton;
     private JLabel titleLabel;
     private JLabel errorLabel;          // shows error if name is empty
-
+    private JButton exitButton;
     /**
      * Creates the main menu panel with navigation and game setup options.
      * @param mainFrame reference to the main window
@@ -74,6 +74,9 @@ public class MainMenuPanel extends JPanel {
         errorLabel.setForeground(Color.RED);
         errorLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         errorLabel.setVisible(false);
+
+        exitButton = new JButton("Exit");
+        exitButton.setFont(new Font("Arial", Font.PLAIN, 16));
     }
 
     /**
@@ -130,12 +133,14 @@ public class MainMenuPanel extends JPanel {
         bottomPanel.add(scoreBoardButton);
         bottomPanel.add(settingsButton);
         add(bottomPanel, BorderLayout.SOUTH);
+        bottomPanel.add(exitButton);
     }
 
     /**
      * Sets up action listeners for all buttons.
      */
     private void setupListeners() {
+        // Start quiz – validate name first
         startButton.addActionListener(e -> {
             if (getPlayerName().isEmpty()) {
                 errorLabel.setVisible(true);
@@ -149,7 +154,7 @@ public class MainMenuPanel extends JPanel {
             // Get questions from QuestionBank
             QuestionBank questionBank = new QuestionBank();
             List<Question> questions = questionBank.getByCategoryAndDifficulty(
-                    new Category(getSelectedCategory(), "", ""),
+                    getSelectedCategory(),
                     getSelectedDifficulty()
             );
 
@@ -157,6 +162,43 @@ public class MainMenuPanel extends JPanel {
             QuizManager quizManager = new QuizManager(player, questions);
             mainFrame.switchPanel(new GamePanel(quizManager));
         });
+
+        // Open scoreboard – disable button while open
+        scoreBoardButton.addActionListener(e -> {
+            ScoreBoardWindow window = new ScoreBoardWindow(scoreBoard);
+            window.setVisible(true);
+            scoreBoardButton.setEnabled(false);
+            window.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent e) {
+                    scoreBoardButton.setEnabled(true);
+                }
+            });
+        });
+
+        // Open settings – disable button while open
+        settingsButton.addActionListener(e -> {
+            SettingsFrame settings = new SettingsFrame(mainFrame, this);
+            settings.setVisible(true);
+            settingsButton.setEnabled(false);
+            settings.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent e) {
+                    settingsButton.setEnabled(true);
+                }
+            });
+        });
+
+        // Exit application
+        exitButton.addActionListener(e -> System.exit(0));
+    }
+
+    /**
+     * Sets the player name in the text field.
+     * @param name player name to set
+     */
+    public void setPlayerName(String name) {
+        playerNameField.setText(name);
     }
 
     /**
