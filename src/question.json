@@ -1,0 +1,24 @@
+[
+  {
+    "type": "multiple",
+    "text": "What does CPU stand for?",
+    "category": "IT",
+    "difficulty": "Easy",
+    "timeLimit": 30,
+    "options": [
+      "Central Processing Unit",
+      "Central Program Unit",
+      "Computer Personal Unit",
+      "Central Processor Utility"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "type": "truefalse",
+    "text": "Java is an object-oriented language.",
+    "category": "IT",
+    "difficulty": "Easy",
+    "timeLimit": 20,
+    "correctAnswer": true
+  }
+]
