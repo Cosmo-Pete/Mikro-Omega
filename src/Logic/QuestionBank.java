@@ -79,7 +79,8 @@ public class QuestionBank implements Saveable {
 
     @Override
     public void load(String filePath) {
-        // TODO: Implementace
+        QuestionParser parser = new QuestionParser();
+        allQuestions = parser.parse(filePath);
     }
 
 
