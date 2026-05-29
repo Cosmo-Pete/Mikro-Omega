@@ -140,27 +140,50 @@ public class MainMenuPanel extends JPanel {
      * Sets up action listeners for all buttons.
      */
     private void setupListeners() {
-        // Start quiz – validate name first
         startButton.addActionListener(e -> {
-            if (getPlayerName().isEmpty()) {
-                errorLabel.setVisible(true);
-                return;
+            try {
+                if (getPlayerName().isEmpty()) {
+                    errorLabel.setVisible(true);
+                    return;
+                }
+                errorLabel.setVisible(false);
+
+                Player player = new Player(getPlayerName());
+
+                QuestionBank questionBank = new QuestionBank();
+                questionBank.load("src/resources/questions.json");
+                List<Question> questions = questionBank.getByCategoryAndDifficulty(
+                        getSelectedCategory(),
+                        getSelectedDifficulty()
+                );
+
+                if (questions.isEmpty()) {
+                    JOptionPane.showMessageDialog(this,
+                            "No questions found for selected category and difficulty!",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                QuizManager quizManager = new QuizManager(player, questions, scoreBoard);
+                GamePanel gamePanel = new GamePanel(quizManager);
+
+                quizManager.getTimer().setOnTick(() ->
+                        gamePanel.updateTimer(quizManager.getTimer().getRemainingSeconds())
+                );
+
+                quizManager.getTimer().setOnExpire(() -> {
+                    gamePanel.showCorrectAnswer();
+                    gamePanel.lockAnswers();
+                });
+
+                quizManager.startQuiz();
+                gamePanel.displayQuestion(quizManager.getCurrentQuestion());
+                mainFrame.switchPanel(gamePanel);
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error starting quiz: " + ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
-            errorLabel.setVisible(false);
-
-            // Create player object
-            Player player = new Player(getPlayerName());
-
-            // Get questions from QuestionBank
-            QuestionBank questionBank = new QuestionBank();
-            List<Question> questions = questionBank.getByCategoryAndDifficulty(
-                    getSelectedCategory(),
-                    getSelectedDifficulty()
-            );
-
-            // Create QuizManager and switch to GamePanel
-            QuizManager quizManager = new QuizManager(player, questions);
-            mainFrame.switchPanel(new GamePanel(quizManager));
         });
 
         // Open scoreboard – disable button while open
