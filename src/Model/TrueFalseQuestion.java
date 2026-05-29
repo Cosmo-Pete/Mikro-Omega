@@ -5,8 +5,8 @@ public class TrueFalseQuestion extends Question {
     private boolean correctAnswer;
 
     public TrueFalseQuestion(String questionText, String difficulty,
-                              Category category, int timeLimit,
-                              boolean correctAnswer) {
+                             Category category, int timeLimit,
+                             boolean correctAnswer) {
         super(questionText, difficulty, category, timeLimit);
         this.correctAnswer = correctAnswer;
     }
@@ -16,14 +16,25 @@ public class TrueFalseQuestion extends Question {
         return correctAnswer;
     }
 
-    // Implementace z Answerable
+    /**
+     * Checks if the given answer matches the correct answer.
+     * @param answer the boolean answer (true or false)
+     * @return true if correct, false otherwise
+     */
     @Override
     public boolean checkAnswer(Object answer) {
+        if (answer instanceof Boolean) {
+            return (Boolean) answer == correctAnswer;
+        }
         return false;
     }
 
+    /**
+     * Returns the formatted question text.
+     * @return question text with true/false options
+     */
     @Override
     public String getFormattedQuestion() {
-        return "";
+        return getQuestionText() + " (True/False)";
     }
 }
