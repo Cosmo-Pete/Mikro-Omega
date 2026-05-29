@@ -41,8 +41,13 @@ public class GamePanel extends JPanel {
     }
 
     private void showResults() {
-        MainFrame frame = (MainFrame) SwingUtilities.getWindowAncestor(this);
-        frame.switchPanel(new ResultPanel(quizManager.finishQuiz()));
+        try {
+            MainFrame frame = (MainFrame) SwingUtilities.getWindowAncestor(this);
+            frame.switchPanel(new ResultPanel(quizManager.finishQuiz()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error showing results: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -177,42 +182,42 @@ public class GamePanel extends JPanel {
      * @param question the question to display
      */
     public void displayQuestion(Question question) {
-        // Update question text and progress
-        questionLabel.setText("<html><center>" + question.getQuestionText() + "</center></html>");
-        progressLabel.setText("Question " + (quizManager.getCurrentIndex() + 1)
-                + "/" + quizManager.getTotalQuestions());
+        try {
+            questionLabel.setText("<html><center>" + question.getQuestionText() + "</center></html>");
+            progressLabel.setText("Question " + (quizManager.getCurrentIndex() + 1)
+                    + "/" + quizManager.getTotalQuestions());
 
-        // Reset button colors
-        for (JButton btn : answerButtons) {
-            btn.setBackground(null);
-        }
-        trueButton.setBackground(null);
-        falseButton.setBackground(null);
-
-        // Show correct button type based on question type
-        if (question instanceof MultipleChoiceQuestion multipleChoice) {
-            // Show multiple choice buttons, hide true/false
-            for (int i = 0; i < answerButtons.length; i++) {
-                answerButtons[i].setVisible(true);
-                answerButtons[i].setEnabled(true);
-                answerButtons[i].setText(multipleChoice.getOptions().get(i));
-            }
-            trueButton.setVisible(false);
-            falseButton.setVisible(false);
-
-        } else if (question instanceof TrueFalseQuestion) {
-            // Hide multiple choice, show true/false
             for (JButton btn : answerButtons) {
-                btn.setVisible(false);
+                btn.setBackground(null);
             }
-            trueButton.setVisible(true);
-            falseButton.setVisible(true);
-            trueButton.setEnabled(true);
-            falseButton.setEnabled(true);
-        }
+            trueButton.setBackground(null);
+            falseButton.setBackground(null);
 
-        revalidate();
-        repaint();
+            if (question instanceof MultipleChoiceQuestion multipleChoice) {
+                for (int i = 0; i < answerButtons.length; i++) {
+                    answerButtons[i].setVisible(true);
+                    answerButtons[i].setEnabled(true);
+                    answerButtons[i].setText(multipleChoice.getOptions().get(i));
+                }
+                trueButton.setVisible(false);
+                falseButton.setVisible(false);
+
+            } else if (question instanceof TrueFalseQuestion) {
+                for (JButton btn : answerButtons) {
+                    btn.setVisible(false);
+                }
+                trueButton.setVisible(true);
+                falseButton.setVisible(true);
+                trueButton.setEnabled(true);
+                falseButton.setEnabled(true);
+            }
+
+            revalidate();
+            repaint();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error displaying question: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -263,7 +268,6 @@ public class GamePanel extends JPanel {
      * After a short delay moves to the next question or shows results.
      */
     public void lockAnswers() {
-        // Disable all buttons
         for (JButton btn : answerButtons) {
             btn.setEnabled(false);
         }
@@ -271,15 +275,19 @@ public class GamePanel extends JPanel {
         falseButton.setEnabled(false);
         skipButton.setEnabled(false);
 
-        // Wait 1.5 seconds then move to next question
         Timer delay = new Timer(1500, e -> {
-            skipButton.setEnabled(true);
-            if (quizManager.isQuizFinished()) {
-                showResults();
-            } else {
+            try {
+                skipButton.setEnabled(true);
                 quizManager.nextQuestion();
-                displayQuestion(quizManager.getCurrentQuestion());
-                updateScore(quizManager.getCurrentScore());
+                if (quizManager.isQuizFinished()) {
+                    showResults();
+                } else {
+                    displayQuestion(quizManager.getCurrentQuestion());
+                    updateScore(quizManager.getCurrentScore());
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error loading next question: " + ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
         delay.setRepeats(false);
