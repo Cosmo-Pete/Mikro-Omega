@@ -4,7 +4,11 @@ import javax.swing.SwingUtilities;
 public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new MainFrame();
+            try {
+                new MainFrame();
+            } catch (Exception e) {
+                System.err.println("Error starting application: " + e.getMessage());
+            }
         });
     }
 }
