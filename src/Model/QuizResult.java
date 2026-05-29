@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class QuizResult {
+public class QuizResult implements Serializable {
 
     private Player player;
     private Category category;
@@ -58,9 +59,10 @@ public class QuizResult {
         return date;
     }
 
-    // Výpočty
+    // calculations
     public double getAccuracyPercentage() {
-        return 0.0;
+        if (totalQuestions == 0) return 0;
+        return ((double) correctAnswers / totalQuestions) * 100;
     }
 
     @Override
