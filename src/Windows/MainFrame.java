@@ -13,15 +13,21 @@ public class MainFrame extends JFrame {
         setupGame();
     }
 
-    /**
-     * Configures the main window properties.
-     */
     private void setupWindow() {
         setTitle("Quiz App");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setSize(1280, 720);
         setResizable(true);
         setLocationRelativeTo(null);
+
+        // Save scoreboard on close
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                scoreBoard.save("src/resources/scoreboard.dat");
+                System.exit(0);
+            }
+        });
     }
 
     /**
@@ -29,6 +35,7 @@ public class MainFrame extends JFrame {
      */
     private void setupGame() {
         scoreBoard = new ScoreBoard(10);
+        scoreBoard.load("src/resources/scoreboard.dat");
         mainPanel = new MainMenuPanel(this, scoreBoard);
         add(mainPanel);
         pack();
