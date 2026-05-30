@@ -15,12 +15,13 @@ public class Timer {
         this.running = false;
     }
 
-    // Ovládání
+
     public void start() {
-        swingTimer = new javax.swing.Timer(1000, e ->{
+        swingTimer = new javax.swing.Timer(1000, e -> {
             remainingSeconds--;
+            System.out.println("Timer tick: " + remainingSeconds);
             if (onTick != null) onTick.run();
-            if (remainingSeconds == 0){
+            if (remainingSeconds == 0) {
                 swingTimer.stop();
                 if (onExpire != null) onExpire.run();
             }
@@ -32,15 +33,19 @@ public class Timer {
         swingTimer.stop();
     }
 
-    public void reset() {
-        swingTimer.stop();
-        remainingSeconds = totalSeconds;
-    }
-
-    public void reset(int newSeconds) {
-        swingTimer.stop();
+    public void resetTODefault(int newSeconds) {
+        if (swingTimer != null) {
+            swingTimer.stop();
+        }
         totalSeconds = newSeconds;
         remainingSeconds = newSeconds;
+    }
+
+    public void resetTODefault() {
+        if (swingTimer != null) {
+            swingTimer.stop();
+        }
+        remainingSeconds = totalSeconds;
     }
 
     // Gettery
