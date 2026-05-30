@@ -11,35 +11,40 @@ public class QuizManager {
     private int correctAnswers;
     private Player currentPlayer;
     private Timer timer;
+    private long startTime;
+    private ScoreBoard scoreBoard;
 
-    public QuizManager(Player player, List<Question> questions) {
+    public QuizManager(Player player, List<Question> questions, ScoreBoard scoreBoard) {
         this.currentPlayer = player;
         this.questions = questions;
+        this.scoreBoard = scoreBoard;
         this.currentIndex = 0;
         this.score = 0;
         this.correctAnswers = 0;
+        this.timer = new Timer(30);
     }
 
-    // Průběh kvízu
+
     public void startQuiz() {
         currentIndex = 0;
         score = 0;
+        correctAnswers = 0;
+        timer.resetTODefault(questions.get(0).getTimeLimit());
         timer.start();
-        timer.reset();
+        startTime = System.currentTimeMillis();
     }
 
     public void nextQuestion() {
         currentIndex++;
-        timer.reset();
         if (!isQuizFinished()) {
+            timer.resetTODefault(questions.get(currentIndex).getTimeLimit());
             timer.start();
-
         }
     }
 
     public void skipQuestion() {
         currentIndex++;
-        timer.reset();
+        timer.resetTODefault();
         if (!isQuizFinished()){
             timer.start();
         }
@@ -47,20 +52,21 @@ public class QuizManager {
 
     public boolean submitAnswer(Object answer) {
         boolean correct = questions.get(currentIndex).checkAnswer(answer);
-        if (correct){
+        if (correct) {
             score += calculatePoints(true, timer.getRemainingSeconds());
+            correctAnswers++;
         }
-        correctAnswers++;
         return correct;
     }
 
     public boolean isQuizFinished() {
-        return false;
+        return currentIndex >= questions.size();
     }
 
-    // Skóre
+
     public int calculatePoints(boolean correct, long timeRemaining) {
-        return 0;
+        if (!correct) return 0;
+        return 100 + (int)(timeRemaining * 5);
     }
 
     public int getCurrentScore() {
@@ -73,7 +79,7 @@ public class QuizManager {
 
     // Gettery
     public Question getCurrentQuestion() {
-        return null;
+        return questions.get(currentIndex);
     }
 
     public int getCurrentIndex() {
@@ -88,8 +94,31 @@ public class QuizManager {
         return currentPlayer;
     }
 
-    // Výsledek
-    public QuizResult finishQuiz() {
-        return null;
+    public Timer getTimer() {
+        return timer;
     }
+
+    /**
+     * Finishes the quiz and returns the result.
+     * @return QuizResult with all quiz data
+     */
+    public QuizResult finishQuiz() {
+        timer.stop();
+        long timeTaken = (System.currentTimeMillis() - startTime) / 1000;
+        QuizResult result = new QuizResult(
+                currentPlayer,
+                questions.get(0).getCategory(),
+                questions.get(0).getDifficulty(),
+                score,
+                questions.size(),
+                correctAnswers,
+                timeTaken
+        );
+        scoreBoard.addResult(result);
+        return result;
+    }
+
+
+
+
 }
