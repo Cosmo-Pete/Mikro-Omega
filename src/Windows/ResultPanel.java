@@ -75,7 +75,7 @@ public class ResultPanel extends JPanel {
         // --- CENTER: statistics ---
         JPanel centerPanel = new JPanel(new GridLayout(3, 1, 5, 10));
         centerPanel.setBackground(Color.WHITE);
-        centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 200, 20, 200));
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
         centerPanel.add(scoreLabel);
         centerPanel.add(accuracyLabel);
         centerPanel.add(timeLabel);
@@ -122,7 +122,7 @@ public class ResultPanel extends JPanel {
     public void displayResult(QuizResult result) {
         scoreLabel.setText("Score: " + result.getScore());
         accuracyLabel.setText("Accuracy: " + String.format("%.1f", result.getAccuracyPercentage()) + "%");
-        timeLabel.setText("Time: " + result.getTimeTaken() + "s");
+        timeLabel.setText("Time elapsed: " + result.getTimeTaken() + "s");
         messageLabel.setText(getResultMessage(result.getAccuracyPercentage()));
     }
 
