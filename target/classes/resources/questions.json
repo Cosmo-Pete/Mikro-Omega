@@ -1,0 +1,308 @@
+[
+  {
+    "type": "multiple",
+    "text": "What does CPU stand for?",
+    "category": "IT",
+    "difficulty": "Easy",
+    "timeLimit": 30,
+    "options": ["Central Processing Unit", "Central Program Unit", "Computer Personal Unit", "Central Processor Utility"],
+    "correctIndex": 0
+  },
+  {
+    "type": "multiple",
+    "text": "What does RAM stand for?",
+    "category": "IT",
+    "difficulty": "Easy",
+    "timeLimit": 30,
+    "options": ["Random Access Memory", "Read Access Memory", "Random Active Memory", "Read Active Memory"],
+    "correctIndex": 0
+  },
+  {
+    "type": "truefalse",
+    "text": "Java is an object-oriented language.",
+    "category": "IT",
+    "difficulty": "Easy",
+    "timeLimit": 20,
+    "correctAnswer": true
+  },
+  {
+    "type": "truefalse",
+    "text": "Python was created by Microsoft.",
+    "category": "IT",
+    "difficulty": "Easy",
+    "timeLimit": 20,
+    "correctAnswer": false
+  },
+  {
+    "type": "multiple",
+    "text": "What is the time complexity of binary search?",
+    "category": "IT",
+    "difficulty": "Medium",
+    "timeLimit": 25,
+    "options": ["O(log n)", "O(n)", "O(n^2)", "O(1)"],
+    "correctIndex": 0
+  },
+  {
+    "type": "multiple",
+    "text": "Which data structure uses LIFO order?",
+    "category": "IT",
+    "difficulty": "Medium",
+    "timeLimit": 25,
+    "options": ["Stack", "Queue", "Array", "LinkedList"],
+    "correctIndex": 0
+  },
+  {
+    "type": "truefalse",
+    "text": "HTTP is a stateful protocol.",
+    "category": "IT",
+    "difficulty": "Medium",
+    "timeLimit": 20,
+    "correctAnswer": false
+  },
+  {
+    "type": "truefalse",
+    "text": "An IP address consists of 32 bits in IPv4.",
+    "category": "IT",
+    "difficulty": "Medium",
+    "timeLimit": 20,
+    "correctAnswer": true
+  },
+  {
+    "type": "multiple",
+    "text": "What does SQL stand for?",
+    "category": "IT",
+    "difficulty": "Hard",
+    "timeLimit": 20,
+    "options": ["Structured Query Language", "Simple Query Language", "Structured Question Language", "Simple Question Language"],
+    "correctIndex": 0
+  },
+  {
+    "type": "multiple",
+    "text": "Which sorting algorithm has the best average time complexity?",
+    "category": "IT",
+    "difficulty": "Hard",
+    "timeLimit": 20,
+    "options": ["Merge Sort", "Bubble Sort", "Selection Sort", "Insertion Sort"],
+    "correctIndex": 0
+  },
+  {
+    "type": "truefalse",
+    "text": "A deadlock occurs when two processes are waiting for each other indefinitely.",
+    "category": "IT",
+    "difficulty": "Hard",
+    "timeLimit": 15,
+    "correctAnswer": true
+  },
+  {
+    "type": "truefalse",
+    "text": "TCP is faster than UDP.",
+    "category": "IT",
+    "difficulty": "Hard",
+    "timeLimit": 15,
+    "correctAnswer": false
+  },
+  {
+    "type": "multiple",
+    "text": "What is 2 + 2?",
+    "category": "Mathematics",
+    "difficulty": "Easy",
+    "timeLimit": 15,
+    "options": ["4", "3", "5", "22"],
+    "correctIndex": 0
+  },
+  {
+    "type": "multiple",
+    "text": "What is the square root of 144?",
+    "category": "Mathematics",
+    "difficulty": "Easy",
+    "timeLimit": 20,
+    "options": ["12", "14", "11", "13"],
+    "correctIndex": 0
+  },
+  {
+    "type": "truefalse",
+    "text": "Pi is exactly equal to 3.14.",
+    "category": "Mathematics",
+    "difficulty": "Easy",
+    "timeLimit": 20,
+    "correctAnswer": false
+  },
+  {
+    "type": "truefalse",
+    "text": "A triangle has 3 sides.",
+    "category": "Mathematics",
+    "difficulty": "Easy",
+    "timeLimit": 15,
+    "correctAnswer": true
+  },
+  {
+    "type": "multiple",
+    "text": "What is the derivative of x^2?",
+    "category": "Mathematics",
+    "difficulty": "Medium",
+    "timeLimit": 25,
+    "options": ["2x", "x", "2", "x^2"],
+    "correctIndex": 0
+  },
+  {
+    "type": "multiple",
+    "text": "What is 15% of 200?",
+    "category": "Mathematics",
+    "difficulty": "Medium",
+    "timeLimit": 25,
+    "options": ["30", "25", "35", "20"],
+    "correctIndex": 0
+  },
+  {
+    "type": "truefalse",
+    "text": "The sum of angles in a triangle is 180 degrees.",
+    "category": "Mathematics",
+    "difficulty": "Medium",
+    "timeLimit": 20,
+    "correctAnswer": true
+  },
+  {
+    "type": "truefalse",
+    "text": "A prime number can be divided by 1 and itself only.",
+    "category": "Mathematics",
+    "difficulty": "Medium",
+    "timeLimit": 20,
+    "correctAnswer": true
+  },
+  {
+    "type": "multiple",
+    "text": "What is the integral of 1/x?",
+    "category": "Mathematics",
+    "difficulty": "Hard",
+    "timeLimit": 20,
+    "options": ["ln(x)", "x^2", "1/x^2", "e^x"],
+    "correctIndex": 0
+  },
+  {
+    "type": "multiple",
+    "text": "What is the value of e (Euler's number) approximately?",
+    "category": "Mathematics",
+    "difficulty": "Hard",
+    "timeLimit": 20,
+    "options": ["2.718", "3.141", "1.618", "2.502"],
+    "correctIndex": 0
+  },
+  {
+    "type": "truefalse",
+    "text": "Every matrix has an inverse.",
+    "category": "Mathematics",
+    "difficulty": "Hard",
+    "timeLimit": 15,
+    "correctAnswer": false
+  },
+  {
+    "type": "truefalse",
+    "text": "The Pythagorean theorem states that a^2 + b^2 = c^2.",
+    "category": "Mathematics",
+    "difficulty": "Hard",
+    "timeLimit": 15,
+    "correctAnswer": true
+  },
+  {
+    "type": "multiple",
+    "text": "What is the capital of France?",
+    "category": "Geography",
+    "difficulty": "Easy",
+    "timeLimit": 30,
+    "options": ["Paris", "London", "Berlin", "Madrid"],
+    "correctIndex": 0
+  },
+  {
+    "type": "multiple",
+    "text": "What is the largest continent?",
+    "category": "Geography",
+    "difficulty": "Easy",
+    "timeLimit": 30,
+    "options": ["Asia", "Africa", "Europe", "America"],
+    "correctIndex": 0
+  },
+  {
+    "type": "truefalse",
+    "text": "Australia is both a country and a continent.",
+    "category": "Geography",
+    "difficulty": "Easy",
+    "timeLimit": 20,
+    "correctAnswer": true
+  },
+  {
+    "type": "truefalse",
+    "text": "The Amazon river is in Africa.",
+    "category": "Geography",
+    "difficulty": "Easy",
+    "timeLimit": 20,
+    "correctAnswer": false
+  },
+  {
+    "type": "multiple",
+    "text": "What is the capital of Australia?",
+    "category": "Geography",
+    "difficulty": "Medium",
+    "timeLimit": 25,
+    "options": ["Canberra", "Sydney", "Melbourne", "Brisbane"],
+    "correctIndex": 0
+  },
+  {
+    "type": "multiple",
+    "text": "Which country has the most natural lakes?",
+    "category": "Geography",
+    "difficulty": "Medium",
+    "timeLimit": 25,
+    "options": ["Canada", "Russia", "USA", "Brazil"],
+    "correctIndex": 0
+  },
+  {
+    "type": "truefalse",
+    "text": "The Great Wall of China is visible from space.",
+    "category": "Geography",
+    "difficulty": "Medium",
+    "timeLimit": 20,
+    "correctAnswer": false
+  },
+  {
+    "type": "truefalse",
+    "text": "The Nile is the longest river in the world.",
+    "category": "Geography",
+    "difficulty": "Medium",
+    "timeLimit": 20,
+    "correctAnswer": true
+  },
+  {
+    "type": "multiple",
+    "text": "What is the smallest country in the world?",
+    "category": "Geography",
+    "difficulty": "Hard",
+    "timeLimit": 20,
+    "options": ["Vatican City", "Monaco", "San Marino", "Liechtenstein"],
+    "correctIndex": 0
+  },
+  {
+    "type": "multiple",
+    "text": "Which country has the longest coastline?",
+    "category": "Geography",
+    "difficulty": "Hard",
+    "timeLimit": 20,
+    "options": ["Canada", "Russia", "Norway", "Australia"],
+    "correctIndex": 0
+  },
+  {
+    "type": "truefalse",
+    "text": "Mount Everest is located in Nepal.",
+    "category": "Geography",
+    "difficulty": "Hard",
+    "timeLimit": 15,
+    "correctAnswer": true
+  },
+  {
+    "type": "truefalse",
+    "text": "The Sahara is the largest desert in the world.",
+    "category": "Geography",
+    "difficulty": "Hard",
+    "timeLimit": 15,
+    "correctAnswer": false
+  }
+]
