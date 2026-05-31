@@ -19,17 +19,6 @@ public class QuestionBank implements Saveable {
         this.allQuestions = new ArrayList<>();
     }
     /**
-     * Returns all questions matching the given category.
-     * @param categoryName name of the category to filter by
-     * @return list of questions in the category
-     */
-    public List<Question> getByCategory(String categoryName) {
-        return allQuestions.stream()
-                .filter(q -> q.getCategory().getName().equals(categoryName))
-                .toList();
-    }
-
-    /**
      * Returns all questions matching the given difficulty.
      * @param difficulty difficulty level to filter by
      * @return list of questions with the given difficulty
@@ -51,33 +40,6 @@ public class QuestionBank implements Saveable {
                 .filter(q -> q.getCategory().getName().equals(categoryName))
                 .filter(q -> q.getDifficulty().equals(difficulty))
                 .toList();
-    }
-
-    /**
-     * Returns a random subset of questions.
-     * @param count number of random questions to return
-     * @return list of randomly selected questions
-     */
-    public List<Question> getRandomQuestions(int count) {
-        List<Question> copy = new ArrayList<>(allQuestions);
-        Collections.shuffle(copy);
-        return copy.subList(0, Math.min(count, copy.size()));
-    }
-
-    /**
-     * Returns the total number of questions in the bank.
-     * @return total question count
-     */
-    public int getTotalCount() {
-        return allQuestions.size();
-    }
-
-    /**
-     * Returns true if the bank contains no questions.
-     * @return true if empty
-     */
-    public boolean isEmpty() {
-        return allQuestions.isEmpty();
     }
 
     /**

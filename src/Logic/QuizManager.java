@@ -112,13 +112,7 @@ public class QuizManager {
         return score;
     }
 
-    /**
-     * Returns the number of correct answers.
-     * @return correct answer count
-     */
-    public int getCorrectAnswers() {
-        return correctAnswers;
-    }
+
 
     /**
      * Returns the current question.
@@ -144,13 +138,6 @@ public class QuizManager {
         return questions.size();
     }
 
-    /**
-     * Returns the current player.
-     * @return current player
-     */
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
 
     /**
      * Returns the timer.
