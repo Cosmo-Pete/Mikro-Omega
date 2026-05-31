@@ -9,7 +9,7 @@ public class ResultPanel extends JPanel {
 
     private QuizResult result;
 
-    // Labels for displaying results
+    //labels
     private JLabel titleLabel;
     private JLabel scoreLabel;
     private JLabel accuracyLabel;

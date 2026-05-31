@@ -7,12 +7,16 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Parses quiz questions from a JSON file.
+ * Supports multiple choice and true/false question types.
+ */
 public class QuestionParser {
 
     /**
      * Parses questions from a JSON file and returns them as a list.
      * @param filePath path to the JSON file
-     * @return list of parsed questions
+     * @return list of parsed questions, empty list if file not found
      */
     public List<Question> parse(String filePath) {
         List<Question> questions = new ArrayList<>();
@@ -38,8 +42,9 @@ public class QuestionParser {
 
     /**
      * Parses a single question from a JsonObject.
+     * Reads type, text, category, difficulty and timeLimit fields.
      * @param obj the JsonObject to parse
-     * @return parsed Question or null if type is unknown
+     * @return parsed Question or null if type is unknown or parsing fails
      */
     private Question parseQuestion(JsonObject obj) {
         try {
@@ -67,7 +72,13 @@ public class QuestionParser {
     }
 
     /**
-     * Parses a multiple choice question.
+     * Parses a multiple choice question from a JsonObject.
+     * Reads options array and correctIndex fields.
+     * @param obj the JsonObject containing question data
+     * @param text question text
+     * @param difficulty difficulty level
+     * @param category question category
+     * @param timeLimit time limit in seconds
      * @return MultipleChoiceQuestion object
      */
     private MultipleChoiceQuestion parseMultipleChoice(JsonObject obj, String text,
@@ -81,7 +92,13 @@ public class QuestionParser {
     }
 
     /**
-     * Parses a true/false question.
+     * Parses a true/false question from a JsonObject.
+     * Reads correctAnswer boolean field.
+     * @param obj the JsonObject containing question data
+     * @param text question text
+     * @param difficulty difficulty level
+     * @param category question category
+     * @param timeLimit time limit in seconds
      * @return TrueFalseQuestion object
      */
     private TrueFalseQuestion parseTrueFalse(JsonObject obj, String text,

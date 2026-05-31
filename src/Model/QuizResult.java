@@ -43,14 +43,6 @@ public class QuizResult implements Serializable {
         return score;
     }
 
-    public int getTotalQuestions() {
-        return totalQuestions;
-    }
-
-    public int getCorrectAnswers() {
-        return correctAnswers;
-    }
-
     public long getTimeTaken() {
         return timeTaken;
     }

@@ -11,7 +11,7 @@ import Model.Question;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;      // ← musí být java.util.List ne java.awt.List
+import java.util.List;
 
 public class MainMenuPanel extends JPanel {
 

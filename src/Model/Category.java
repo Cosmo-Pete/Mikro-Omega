@@ -19,18 +19,6 @@ public class Category implements Serializable {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getIconPath() {
-        return iconPath;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String toString() {
         return name;

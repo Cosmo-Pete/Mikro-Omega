@@ -18,6 +18,7 @@ public class TrueFalseQuestion extends Question {
 
     /**
      * Checks if the given answer matches the correct answer.
+     *
      * @param answer the boolean answer (true or false)
      * @return true if correct, false otherwise
      */
@@ -27,14 +28,5 @@ public class TrueFalseQuestion extends Question {
             return (Boolean) answer == correctAnswer;
         }
         return false;
-    }
-
-    /**
-     * Returns the formatted question text.
-     * @return question text with true/false options
-     */
-    @Override
-    public String getFormattedQuestion() {
-        return getQuestionText() + " (True/False)";
     }
 }

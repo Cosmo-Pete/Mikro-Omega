@@ -33,8 +33,6 @@ public abstract class Question implements Answerable {
         return timeLimit;
     }
 
-    // Abstract – každá podtřída implementuje po svém
     public abstract boolean checkAnswer(Object answer);
     public abstract Object getCorrectAnswer();
-    public abstract String getFormattedQuestion();
 }

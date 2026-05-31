@@ -7,6 +7,15 @@ public class MultipleChoiceQuestion extends Question {
     private List<String> options;       // list of answer options
     private int correctIndex;           // index of the correct answer
 
+    /**
+     * Creates a new multiple choice question.
+     * @param questionText the question text
+     * @param difficulty difficulty level
+     * @param category question category
+     * @param timeLimit time limit in seconds
+     * @param options list of answer options
+     * @param correctIndex index of the correct answer
+     */
     public MultipleChoiceQuestion(String questionText, String difficulty,
                                   Category category, int timeLimit,
                                   List<String> options, int correctIndex) {
@@ -15,11 +24,18 @@ public class MultipleChoiceQuestion extends Question {
         this.correctIndex = correctIndex;
     }
 
-    // Getters
+    /**
+     * Returns the list of answer options.
+     * @return list of options
+     */
     public List<String> getOptions() {
         return options;
     }
 
+    /**
+     * Returns the index of the correct answer.
+     * @return correct answer index
+     */
     public int getCorrectIndex() {
         return correctIndex;
     }
@@ -50,7 +66,6 @@ public class MultipleChoiceQuestion extends Question {
      * Returns the formatted question with all options.
      * @return formatted question string
      */
-    @Override
     public String getFormattedQuestion() {
         String result = getQuestionText() + "\n";
         for (int i = 0; i < options.size(); i++) {

@@ -40,6 +40,9 @@ public class GamePanel extends JPanel {
         setupListeners();
     }
 
+    /**
+     * Switches the main panel to the result screen.
+     */
     private void showResults() {
         try {
             MainFrame frame = (MainFrame) SwingUtilities.getWindowAncestor(this);
