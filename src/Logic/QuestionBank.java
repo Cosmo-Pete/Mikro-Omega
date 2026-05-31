@@ -18,23 +18,6 @@ public class QuestionBank implements Saveable {
     public QuestionBank() {
         this.allQuestions = new ArrayList<>();
     }
-
-    /**
-     * Adds a question to the bank.
-     * @param question the question to add
-     */
-    public void addQuestion(Question question) {
-        allQuestions.add(question);
-    }
-
-    /**
-     * Removes a question from the bank.
-     * @param question the question to remove
-     */
-    public void removeQuestion(Question question) {
-        allQuestions.remove(question);
-    }
-
     /**
      * Returns all questions matching the given category.
      * @param categoryName name of the category to filter by
